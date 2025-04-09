@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { View, StyleSheet, TouchableWithoutFeedback, TextInput, KeyboardAvoidingView, Platform } from "react-native";
 import Buttonn from "../Button/Button";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { useExpoRouter } from "expo-router/build/global-state/router-store";
 
 export default function InStyles({handleAddTask,Abrir,fechar,visible,setVisible}) {
     
     const [task, setTask] = useState('');
-    const navigation=useNavigation()
+    const router=useExpoRouter();
  
     function sendTask(){
       if(task.trim()){
@@ -45,7 +46,7 @@ export default function InStyles({handleAddTask,Abrir,fechar,visible,setVisible}
                                         
                                     />
                                     <View style={styles.iconc}>
-                                        <MaterialIcons name="notifications" size={35} color={'#50c878'} onPress={()=>navigation.navigate('Notificações')} />
+                                        <MaterialIcons name="notifications" size={35} color={'#50c878'} onPress={()=>router.push('/tarefas/notificacoes')} />
                                         <MaterialIcons name="schedule" size={35} color={'#50c878'} />
                                         <MaterialIcons name="timelapse" size={35} color={'#50c878'} />
                                         <MaterialIcons name="check" size={35} color={'#50c878'} onPress={sendTask} />
